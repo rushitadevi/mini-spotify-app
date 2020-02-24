@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    flex-wrap: unset;
+}
+
+.leftCol{
+    background-color: black;
+    text-align: center;
+    display:table;
+    height: 100vh;
+}
+
+.ulList {
+    color: white !important;
+    font-weight: bold;
+    list-style: none;
+}
+
+.li{
+    margin-top: 15px;
+}
+.li:hover{
+    color:yellowgreen;
+    border-left: 2px solid yellowgreen;
+    cursor: pointer;
+}
+
+.mainContent{
+
+}
+
+#btnNext,#btnPrevious,#btnShuffle,#btnRepeat{
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+}
+
+#btnPlayList{
+    width: 100px;
+    height: 40px;
+    background-color: green;
+    border: 1px solid green;
+    justify-content: center;
+    border-radius: 15px;
+    margin-left: 100px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: large;
+    cursor: pointer;
+}
+
+.mainContent{
+    background-color:rgb(46,63,87);;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    display: flex;
+    /* box-orient: horizontal; */
+    /* flex-direction: row; */
+    /* box-pack: center; */
+    /* justify-content: center; */
+    /* box-align: center;   */
+    /* align-items: center; */
+    flex-grow: 2;
+}
+
+.mainLeftContent{
+ flex-grow: 1;
+ padding: 100px;
+ /* display: grid; */
+ justify-content: center;
+}
+
+.mainRightContent{
+    /* display: flex; */
+    flex-grow: 3;
+    padding: 100px;
+    /* -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto; 
+
+    padding: 10px;
+    margin: 10px;
+
+    background-color: green;
+    border: 1px solid red;
+    text-align: center; */
+}
+
+#imgMain{
+    height: 300px !important;
+    width: 300px !important;
+    justify-content: center;
+}
+
+audio{
+    width: 550px !important;
+    height: 90px !important;
+}
+.footer{
+    background-color: #383838	;
+    flex-basis: 100%;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+}
+  
