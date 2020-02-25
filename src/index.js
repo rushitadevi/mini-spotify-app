@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import '../src/StyleSheets/Main.css'
 import '../src/StyleSheets/PlayList.css'
+import '../src/StyleSheets/Category.css'
+import '../src/StyleSheets/DisplayPLayListByCategory.css'
+import '../src/StyleSheets/SignIn.css'
 import Home from "./Components/Home"
-import PlayList from "./Components/PlayList"
+//import PlayList from "./Components/PlayList"
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<Home />, document.getElementById('root'));

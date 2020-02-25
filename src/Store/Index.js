@@ -5,13 +5,23 @@ import thunk from "redux-thunk";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState={
-    albums:{
-        albums:[]
+  // albums:{
+  //   playLists: [ { title: "", items: []}],
+  //   tracks:[],
+  // categories:[]
+  // }
+  playLists:
+    {
+      moodPlayList:[],
+      popPlayList:[],
+      decadesPlayList:[],
+      tracks:[],
+      categories:[]
     }
 }
 
 const combReducer = combineReducers({
-   albums:albumReducers
+  playLists:albumReducers
   });
 
   export default function configureStore() {

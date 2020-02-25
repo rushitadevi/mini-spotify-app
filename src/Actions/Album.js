@@ -1,28 +1,38 @@
-export const fetchAlbums = () => {
-  //console.log("inside action");
-  return async (dispatch, getState) => {
+export const fetchPlayListsByCategory = (categoryId) => {
+   return async (dispatch, getState) => {
     try {
-              var res = await fetch("https://api.spotify.com/v1/albums", {
+             var res=await fetch("https://api.spotify.com/v1/browse/categories/"+ categoryId+"/playlists",{
+               
                 method: "GET",
-                // body: JSON.stringify(data),
                 headers: {
-                  // "Content-Type": "application/json",
-                  "X-RapidAPI-Host": "https://api.spotify.com",
-                 "X-RapidAPI-Key": "57493545d4c44d5e829806456f5e2584",
-                  Authorization:
+                 "Content-Type": "application/json",
+                 "Accept":"application/json",
+                  "Authorization":
                     "Bearer " +
-                    "BQAGF2pcL2-ICnwgrXkkz2QlbUb87aV2OCV7M2BmFt7RuAjoQYTyyUO07lS12wHBah"
+                    localStorage.getItem("token")
+                 
                 }
               });
-        console.log(res,"res")
+             
               if (res.ok) {
-                var albums = await res.json();
-                console.log(albums, "albums");
-                dispatch({
-                  type: "FETCH_ALBUMS",
-                  payload: albums
-                });
-              }
+                var response = await res.json();
+                // console.log(response.playlists, "albums");
+                if(categoryId==="mood")
+                {
+                  dispatch({
+                    type: "FETCH_MOOD_PLAYLISTS",
+                    payload: response.playlists.items
+                   // payload: {name: categoryId, items: response.playlists.items }
+                  });
+                }                
+                else if(categoryId==="pop")
+                {
+                  dispatch({
+                    type: "FETCH_POP_PLAYLISTS",
+                    payload: response.playlists.items
+                  });
+                }                
+               }
             } catch (err) {
               // dispatch({
               //   type: "ERROR",
@@ -31,32 +41,68 @@ export const fetchAlbums = () => {
             }
           };
 };
-//   return async (dispatch, getState) => {
-//     try {
-//       var res = await fetch("https://api.spotify.com/v1/albums", {
-//         method: "GET",
-//         // body: JSON.stringify(data),
-//         headers: {
-//           "Content-Type": "application/json",
-//           Authorization:
-//             "Bearer " +
-//             "BQDSMeXn6gpFKba1nZVp4WZqTTliaglnBBLR8MJdwzzxhoNyr_9MOXCoZyjwnUiCse0jy8qaFPhBcuPWrx9yp3N4awxk-pFc9t0I3XphVNY70YGHnELjKfzLPsQhUyuN2HOsxSP0V6TPtVhVFwjxXauw8mJnLSw"
-//         }
-//       });
 
-//       if (res.ok) {
-//         var albums = await res.json();
-//         console.log(albums, "albums");
-//         dispatch({
-//           type: "FETCH_ALBUMS",
-//           payload: albums
-//         });
-//       }
-//     } catch (err) {
-//       // dispatch({
-//       //   type: "ERROR",
-//       //   payload: err
-//       // });
-//     }
-//   };
-// };
+export const fetchTracksByPlayListId=(playListId)=>{
+  return async(dispatch,getState)=>{
+    try {
+      var res=await fetch("https://api.spotify.com/v1/playlists/"+ playListId +"/tracks",{
+         method: "GET",
+         headers: {
+          "Content-Type": "application/json",
+          "Accept":"application/json",
+           "Authorization":
+             "Bearer " +
+             localStorage.getItem("token")
+            }
+       });
+ 
+       if (res.ok) {
+         var response = await res.json();
+       
+           dispatch({
+             type: "FETCH_TRACKS_BY_PLAYLIST",
+             payload: response.items
+           });
+                      
+       }
+     } catch (err) {
+       // dispatch({
+       //   type: "ERROR",
+       //   payload: err
+       // });
+     
+   };
+  }
+}
+
+export const fetchCategories=()=>{
+  return async(dispatch,getState)=>{
+    try {
+      var res=await fetch("https://api.spotify.com/v1/browse/categories",{
+         method: "GET",
+         headers: {
+          "Content-Type": "application/json",
+          "Accept":"application/json",
+           "Authorization":
+             "Bearer " +
+             localStorage.getItem("token") }
+       });
+ 
+       if (res.ok) {
+         var response = await res.json();
+       
+           dispatch({
+             type: "FETCH_CATEGORIES",
+             payload: response.categories.items
+           });
+                      
+       }
+     } catch (err) {
+       // dispatch({
+       //   type: "ERROR",
+       //   payload: err
+       // });
+     
+   };
+  }
+}

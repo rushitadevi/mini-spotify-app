@@ -6,9 +6,26 @@ import btnRepeat from "../PlayerButtons/Repeat.png"
 import btnShuffle from "../PlayerButtons/Shuffle.png"
 import btnPlay from "../PlayerButtons/Play.png"
 import { Link } from "react-router-dom"
+import { fetchTracksByPlayListId } from "../Actions/Album.js"
+import { connect } from "react-redux";
 
-class PlayList extends React.Component {
+const mapStateToProps = state => {
+    return state;
+};
+
+const mapDispatchToProps = dispatch => ({
+    fetchTracksByPlayListIdThunk: (playListid) => dispatch(fetchTracksByPlayListId(playListid))
+});
+
+class TracksByPlayList extends React.Component {
+
+    componentDidMount = () => {
+        let playListid = this.props.match.params.id;
+        console.log(playListid, "id")
+        this.props.fetchTracksByPlayListIdThunk(playListid)
+    }
     render() {
+        console.log(this.props.playLists.moodPlayList,"ooo")
         return (
             <>
                 <div className="container">
@@ -21,23 +38,23 @@ class PlayList extends React.Component {
                         </ul>
                     </div>
                     <div className="mainContent">
+
                         <div className="mainLeftContent">
+                            
                             <img id="imgMain" src="http://i.imgur.com/OUla6mK.jpg" alt="no" />
                             <button id="btnPlayList" >Play</button>
                         </div>
                         <div className="mainRightContent">
-                            <div class="col playlist">
-                                <audio controls>
-                                    <source src={""} type="audio/mpeg" autoPlay controls />
-                                </audio>
+                            {this.props.playLists.tracks && this.props.playLists.tracks.map((track) => (
+                                <div class="col playlist">
+                                    <div>{track.track.name}</div>
+                                    <audio controls>
+                                        <source src={track.track.preview_url} type="audio/mpeg" autoPlay controls />
+                                    </audio>
+                                    <div>{track.track.artists.name}</div>
+                                </div>
+                            ))}
 
-                            </div>
-                            <div class="col playlist">
-                                <audio controls>
-                                    <source src={""} type="audio/mpeg" autoPlay controls />
-                                </audio>
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,5 +81,5 @@ class PlayList extends React.Component {
     }
 }
 
-export default PlayList;
+export default connect(mapStateToProps, mapDispatchToProps)(TracksByPlayList);
 
