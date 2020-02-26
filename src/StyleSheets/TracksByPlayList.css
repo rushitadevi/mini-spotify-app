@@ -1,0 +1,26 @@
+.Container{
+    display: flex;
+}
+
+.leftColumn{
+    flex:1;
+    background-color: black;
+    text-align: center;
+  
+}
+
+.mainTracksContent{
+    flex:3
+}
+
+.mainLeftContent{
+    flex:1
+}
+
+.mainRightContent{
+    flex:3
+}
+
+.insideContainer{
+    display: flex
+}

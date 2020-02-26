@@ -27,7 +27,6 @@ class Category extends React.Component {
         this.props.fetchCategoriesThunk();
     }
     render() {
-        console.log(this.props.playLists.categories, "category")
         return (
             <>
                 <div className="MainContent" >
@@ -41,7 +40,6 @@ class Category extends React.Component {
                     </div>
                     <div className="rightSideBar">
                         <div className="mainContent">
-
                             {this.props.playLists.categories &&
                                 this.props.playLists.categories.map((category) => (
                                     <div className="displayCards">
@@ -61,9 +59,7 @@ class Category extends React.Component {
                                         </ul>
                                     </div>
                                 ))}
-
                         </div>
-
                     </div>
                 </div>
                 <div className="footer">

@@ -6,6 +6,7 @@ import '../src/StyleSheets/PlayList.css'
 import '../src/StyleSheets/Category.css'
 import '../src/StyleSheets/DisplayPLayListByCategory.css'
 import '../src/StyleSheets/SignIn.css'
+import '../src/StyleSheets/TracksByPlayList.css'
 import Home from "./Components/Home"
 //import PlayList from "./Components/PlayList"
 import * as serviceWorker from './serviceWorker';

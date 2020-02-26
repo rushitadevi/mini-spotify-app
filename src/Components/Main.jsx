@@ -25,20 +25,17 @@ class Main extends Component {
         }
     }
 
-
-
     componentDidMount = () => {
-        let categoryArray = ["mood", "pop", "toplists"];
-        categoryArray.forEach((categoryId) => {
+        let categoryArray = ["mood", "pop", "focus"];
+       categoryArray.forEach((categoryId) => {
             this.props.fetchPlayListsByCategoryThunk(categoryId);
-        })
+       })
     }
 
     render() {
-        console.log(this.props.playLists, "play")
-        return (
+        console.log(this.props.playLists)
+           return (
             <>
-               
                 <div className="MainContainer">
                     <div className="sideBar">
                         <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
@@ -58,8 +55,9 @@ class Main extends Component {
                                 <a className="nav-item nav-link" href="/">Home</a>
                                 <a className="nav-item nav-link" href="/album">Search</a>
                             </div> */}
-                            {this.props.playLists.moodPlayList &&
-                                this.props.playLists.moodPlayList.map((playList) => (
+                            
+                            {/* {this.props.playLists &&
+                                this.props.playLists.map((playList) => (
                                     <div className="displayCards">
                                         <ul className="cards">
                                             <li className="cards__item">
@@ -70,18 +68,17 @@ class Main extends Component {
                                                     <div className="card__content">
                                                         <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
                                                         <b><p className="card__text"> {playList.description} </p> </b>
-                                                        {/* <button className="btn btn--block card__btn">Button</button> */}
                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 )).slice(0, 3)
-                            }
+                            } */}
                             <div>
                                 <Link to={"/displayPlaylist/mood"} >SEE ALL</Link>
                             </div>
-                            {this.props.playLists.popPlayList &&
+                            {/* {this.props.playLists.popPlayList &&
                                 this.props.playLists.popPlayList.map((playList) => (
                                     <div className="displayCards">
                                         <ul className="cards">
@@ -90,17 +87,16 @@ class Main extends Component {
                                                     <div className="card__image card__image--fence">
                                                         <img src={playList.images[0].url} alt="img" ></img>
                                                     </div>
-                                                     <div className="card__content">
+                                                    <div className="card__content">
                                                         <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
                                                         <b><p className="card__text"> {playList.description} </p> </b>
-                                                        {/* <button className="btn btn--block card__btn">Button</button> */}
-                                                    </div>
+                                                     </div>
                                                 </div>
                                             </li>
                                         </ul>
                                     </div>
                                 )).slice(0, 3)
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>
@@ -121,7 +117,7 @@ class Main extends Component {
                         <img src={btnRepeat} id="btnRepeat" alt="shuffle" />
                     </a>
                 </div>
-                
+
             </>
         );
     }

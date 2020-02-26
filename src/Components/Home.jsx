@@ -1,4 +1,4 @@
-import React,{Component} from "react"
+import React, { Component } from "react"
 import { BrowserRouter as Router, Route } from "react-router-dom"; //for routing
 import Main from "./Main"
 import TracksByPlayList from "./TracksByPlayList";
@@ -6,60 +6,66 @@ import DisplayPlayList from "./DisplayPlayListByCategory"
 import { Provider } from 'react-redux';
 import configureStore from "../Store/Index.js";
 import Category from "./Category";
-import SignIn from "./SignIn";
 import SpotifyLogin from 'react-spotify-login';
-
-
-
-
+import '../StyleSheets/Home.css'
+//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import Loader from 'react-loader-spinner'
 
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
-            success:undefined
-         }
+        this.state = {
+            success: undefined,
+        }
     }
 
-     onSuccess = response => {
+    onSuccess = response => {
         console.log(response, response.access_token)
         localStorage["token"] = response.access_token
         this.setState({
-            success:true
+            success: true,
         })
     }
 
-     onFailure = response => console.error(response);
+    onFailure = response => console.error(response);
 
-    render() { 
-        return ( 
+    render() {
+        return (
             <>
-            
-            {!this.state.success &&
-            <SpotifyLogin clientId={'05570e17449b40f7a0ac3d9ec33a4f6e'}
-               redirectUri={'http://localhost:3000'}
-               onSuccess={this.onSuccess}
-               onFailure={this.onFailure}                     
-               >Enjoy Music!!!!</SpotifyLogin>
-    }
-             
-            <Provider store={configureStore()}>
-            <Router>
-                 {/* <Route path="/" exact component={SignIn} /> */}
-                 {this.state.success &&    
-                 <Route path="/" exact component={Main} />
-                 }
-                 <Route path="/tracks/:id" exact component={TracksByPlayList} />
-                 <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList}/>
-                 <Route path="/categories/" exact component={Category}/>
-                 
-               
-            </Router>
-            </Provider>
-     
-        </>
-         );
+                {/* {this.state.isLoading === false &&
+                    <Loader
+                        type="Puff"
+                        color="#00BFFF"
+                        height={100}
+                        width={100}
+                    />
+                } */}
+                {!this.state.success && 
+                    <div className="home">
+                        <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
+                            redirectUri={'http://localhost:3000'}
+                            onSuccess={this.onSuccess}
+                            onFailure={this.onFailure}
+                            id="btnSpotify"
+                        >Enjoy Music!!!!  </SpotifyLogin>
+                    </div>
+                }
+
+                <Provider store={configureStore()}>
+                    <Router>
+                        {/* <Route path="/" exact component={SignIn} /> */}
+                        {this.state.success &&
+                            <>
+                                <Route path="/" exact component={Main} />
+                                <Route path="/tracks/:id" exact component={TracksByPlayList} />
+                                <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList} />
+                                <Route path="/categories/" exact component={Category} />
+                            </>
+                        }
+                    </Router>
+                </Provider>
+            </>
+        );
     }
 }
- 
 export default Home;

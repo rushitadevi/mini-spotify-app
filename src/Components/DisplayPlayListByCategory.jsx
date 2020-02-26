@@ -18,16 +18,15 @@ class DisplayPlayList extends React.Component {
     }
 
     componentDidMount = () => {
-        //console.log(this.props.match.params.categoryId,"parama");
         this.props.fetchPlayListsByCategoryThunk(this.props.match.params.categoryId)
     }
 
     render() {
-        console.log(this.props, "pro")
-        return (
+           return (
             <>
                 <div className="Container">
                     <div className="LeftSideBar">
+                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
                             <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/album"} ><a className="li" href="/album" >Search</a></Link>
@@ -53,7 +52,6 @@ class DisplayPlayList extends React.Component {
                                             </div>
                                         </li>
                                     </ul>))
-
                             }
                         </div>
                     </div>

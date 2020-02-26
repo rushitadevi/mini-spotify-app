@@ -4,6 +4,7 @@
 
 .LeftSideBar{
     flex: 1;
+    background-color: black !important;
 }
 
 .RightSidBar{
