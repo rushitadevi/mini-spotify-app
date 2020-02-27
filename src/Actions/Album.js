@@ -78,7 +78,6 @@ export const fetchCategories = () => {
 //fetch playList from playlist id
 export const fetchPlayListById = id => {
   return async (dispatch, getState) => {
-    console.log(id);
     try {
       var res = await fetch("https://api.spotify.com/v1/playlists/" + id, {
         method: "GET",
@@ -90,7 +89,6 @@ export const fetchPlayListById = id => {
       });
       if (res.ok) {
         var response = await res.json();
-        console.log(response, "pla");
         dispatch({
           type: "FETCH_PLAYLIST_DATA",
           payload: response

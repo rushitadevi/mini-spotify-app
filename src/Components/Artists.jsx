@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { fetchArtists } from "../Actions/Album.js"
-import '../StyleSheets/Artists.css'
+import { fetchArtists } from "../Actions/Album.js" //fetching from API 
 import { Link } from "react-router-dom"
 import spotifyLogo from "../logo/Spotify_Logo.png"
 import btnNext from "../PlayerButtons/Next.png"
@@ -9,7 +8,6 @@ import btnPrevious from "../PlayerButtons/Previous.png"
 import btnRepeat from "../PlayerButtons/Repeat.png"
 import btnShuffle from "../PlayerButtons/Shuffle.png"
 import btnPlay from "../PlayerButtons/Play.png"
-import Loader from 'react-loader-spinner'
 
 const mapStateToProps = state => {
     return state;
@@ -24,40 +22,31 @@ class Artists extends React.Component {
         super(props);
         this.state = {
             arr: undefined,
-            isLoading: false,
-            notFound: undefined
         }
     }
 
     componentDidMount = () => {
-        this.props.fetchArtistsThunk();
+        this.props.fetchArtistsThunk();//fetching all artists
     }
 
+    //textInput on change event
     onChange = (e) => {
         let artistArr = this.props.playLists.artists;
+        //filtetring =>checking input typed by user exists in the array or not
         var newFilteredArray = artistArr.filter(item => (item.name.toLowerCase().includes(e.target.value.toLowerCase())))
-        // this.setState({
-        //     isLoading: true
-        // })
         if (newFilteredArray.length > 0) {
             this.setState({
                 arr: newFilteredArray,
-                // isLoading:false,
-                // notFound:"found"
             })
         }
         else {
             this.setState({
                 arr: undefined,
-                //  isLoading: false,
-                //  notFound:"not found"
             })
         }
     }
 
     render() {
-        // console.log(this.state.notFound, "loading")
-
         return (
             <>
                 <div className="MainContainer" >
@@ -67,7 +56,6 @@ class Artists extends React.Component {
                             <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                            <Link to={"/"}><a className="li">Log Out</a></Link>
                         </ul>
                     </div>
                     <div className="Right">
@@ -75,64 +63,51 @@ class Artists extends React.Component {
                             <div className="searchText">
                                 <input type="text" className="inputText" onChange={(e) => this.onChange(e)}
                                 />
-                            </div>
+                            </div> {/* End of searchText */}
                         </div>
                         <div className="otherContent">
-                            {/* <div className="content" > */}
-                                {this.state.isLoading ? <Loader
-                                    type="Puff"
-                                    color="#00BFFF"
-                                    height={100}
-                                    width={100}
-                                // timeout={3000}
-                                /> :
+                            {this.state.arr && this.state.arr.length > 0 ?
                                 <>
-                                    {this.state.arr && this.state.arr.length > 0 ?
-                                        <>
-                                            {this.state.arr.map((artist, id) => (
-                                                <ul className="cards" key={id} >
-                                                    <li className="cards__item">
-                                                        <div className="card">
-                                                            <div className="card__image card__image--fence" >
-                                                                <img src={artist.images[1].url} alt="img" ></img>
-                                                            </div>
-                                                            <div className="card__content">
-                                                                <Link to={"/tracks/" + artist.id} > <div className="card__title">{artist.name}</div></Link>
-                                                                <p className="card__text"> {artist.description} </p>
-                                                                {/* <button className="btn btn--block card__btn">Button</button> */}
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            ))}
-                                        </>
-                                        :
-                                        <>
-                                            {this.props.playLists.artists && this.props.playLists.artists.map((artist, id) => (
-                                                <ul className="cards" key={id}>
-                                                    <li className="cards__item">
-                                                        <div className="card">
-                                                            <div className="card__image card__image--fence" >
-                                                                <img src={artist.images[1].url} alt="img" ></img>
-                                                            </div>
-                                                            <div className="card__content">
-                                                                <Link to={"/tracks/" + artist.id} > <div className="card__title">{artist.name}</div></Link>
-                                                                <p className="card__text"> {artist.description} </p>
-                                                                {/* <button className="btn btn--block card__btn">Button</button> */}
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            ))
-                                            }
-                                        </>
+                                    {this.state.arr.map((artist, id) => (
+                                        <ul key={id} >
+                                            <li >
+                                                <div className="card">
+                                                    <div className="divImg" >
+                                                        <img src={artist.images[1].url} alt="img" ></img>
+                                                    </div> {/* End of divImg */}
+                                                    <div className="card__content">
+                                                        <Link to={"/tracks/" + artist.id} > <div className="card__title">{artist.name}</div></Link>
+                                                        <p className="card__text"> {artist.description} </p>
+                                                    </div> {/* End of card_content */}
+                                                </div> {/* End of card */}
+                                            </li> {/* End of li */}
+                                        </ul>
+                                    ))}
+                                </>
+                                :
+                                <>
+                                    {this.props.playLists.artists && this.props.playLists.artists.map((artist, id) => (
+                                        <ul key={id}>
+                                            <li >
+                                                <div className="card">
+                                                    <div className="divImg" >
+                                                        <img src={artist.images[1].url} alt="img" ></img>
+                                                    </div> {/* End of divImg */}
+                                                    <div className="card__content">
+                                                        <Link to={"/tracks/" + artist.id} > <div className="card__title">{artist.name}</div></Link>
+                                                        <p className="card__text"> {artist.description} </p>
+                                                    </div> {/* End of card-content */}
+                                                </div> {/* End of card */}
+                                            </li>{/* End of li */}
+                                        </ul>
+                                    ))
                                     }
-                                  </>  
-                                }
-                            {/* </div> */}
-                        </div>
-                    </div>
-                </div>
+                                </>
+                            }
+                        </div> {/* End of otherContent */}
+                    </div> {/* End of Right */}
+                </div> {/* End of MainContainer */}
+                {/* Footer */}
                 <div className="footer">
                     <a href="/">
                         <img src={btnShuffle} id="btnNext" alt="shuffle" />

@@ -7,15 +7,14 @@ import btnShuffle from "../PlayerButtons/Shuffle.png"
 import btnPlay from "../PlayerButtons/Play.png"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux";
-import { fetchPlayListsByCategory } from "../Actions/Album.js"
-// import Footer from "./Footer.jsx"
+import { fetchPlayListsByCategory } from "../Actions/Album.js" //fetcing data from API which is written in action
 
 const mapStateToProps = state => {
     return state;
 };
 
 const mapDispatchToProps = dispatch => ({
-    setLoading: () =>
+    setLoading: () => //dispacting loading. as need to set loading false on page load
         dispatch({
             type: "LOADING",
         }),
@@ -29,19 +28,17 @@ class Main extends Component {
             response: null
         }
     }
-
-    componentDidMount = () => {        
-      this.props.setLoading();
-      let categoryArray = ["mood", "pop", "focus", "rock"];
-        categoryArray.forEach((categoryId) => {
+    componentDidMount = () => {
+        this.props.setLoading(); //setting loading to false
+        let categoryArray = ["mood", "pop", "focus", "sleep"];
+        categoryArray.forEach((categoryId) => { //fetcing playlist by category
             this.props.fetchPlayListsByCategoryThunk(categoryId);
         })
     }
-
     render() {
-        console.log(this.props.playLists,"reee")
         return (
             <>
+                {/* main container  */}
                 <div className="MainContainer">
                     <div className="sideBar">
                         <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
@@ -49,65 +46,59 @@ class Main extends Component {
                             <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                            {/* <Link to={"/"}><a className="li">Log Out</a></Link> */}
                         </ul>
                     </div>
                     <div className="RightSideBar">
                         <div className="mainDisplay">
                             {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
                                 <div className="displayDiv" key={id}>
-                                    <div className="title" >{x.title}</div>
-                                    {x.items.map(playList =>
-                                        <div className="displayCards">
-                                            <ul className="cards">
-                                                <li className="cards__item">
-                                                    <div className="card">
+                                    <div className="title" >{x.title.toUpperCase()}</div>
+                                    <div id="displayCardsCol">
+                                        {x.items.map(playList =>
+                                            <div className="displayCards"> {/* start of displayCards */}
+                                                <ul >
+                                                    <div className="card"> {/* card start */}
                                                         <div className="divImg" >
                                                             <img src={playList.images[0].url} alt="img" ></img>
-                                                        </div>
-                                                        <div className="card__content">
+                                                        </div> {/* end of divImg */}
+                                                        <div >
                                                             <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
                                                             <b><p className="card__text"> {playList.description} </p> </b>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>).slice(0, 3)
-                                        
+                                                    </div> {/* end of card */}
+                                                </ul>
+                                            </div>).slice(0, 3)
                                         }
-                                    <div>
+                                    </div> {/* end of displayCardsCol */}
                                     <div className="seeAll">
-                                            <Link to={"/displayPlaylist/"+ x.title} >SEE ALL</Link>
-                                        </div>
+                                        <Link to={"/displayPlaylist/" + x.title} >SEE ALL</Link>
                                     </div>
                                 </div>
                             ).slice(0, 3)
                             }
-                        </div>
-                    </div>
-                </div>
+                        </div> {/* end of main display */}
+                    </div> {/* end of Right side bar */}
+                </div> {/* end of main container */}
                 {/* <Footer/> */}
-                <div className="footer" style={{ display: "flex" }} >
+                <div className="footer">
                     <a href="/">
-                        <img src={btnNext} id="btnNext" alt="shuffle" />
+                        <img src={btnShuffle} id="btnNext" alt="shuffle" />
                     </a>
                     <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="shuffle" />
+                        <img src={btnPrevious} id="btnPrevious" alt="previous" />
+                    </a>
+                    <a href="/" >
+                        <img src={btnPlay} id="btnPlay" alt="play" />
                     </a>
                     <a href="/">
-                        <img src={btnPlay} id="btnPlay" alt="shuffle" />
+                        <img src={btnNext} id="btnShuffle" alt="Next" />
                     </a>
                     <a href="/">
-                        <img src={btnNext} id="btnShuffle" alt="shuffle" />
-                    </a>
-                    <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="shuffle" />
+                        <img src={btnRepeat} id="btnRepeat" alt="repeat" />
                     </a>
                 </div>
-
             </>
         );
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

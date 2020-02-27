@@ -3,13 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom"; //for routing
 import Main from "./Main"
 import TracksByPlayList from "./TracksByPlayList";
 import DisplayPlayList from "./DisplayPlayListByCategory"
-import { Provider } from 'react-redux';
-import configureStore from "../Store/Index.js";
 import Category from "./Category";
 import SpotifyLogin from 'react-spotify-login';
 import '../StyleSheets/Home.css'
 import { connect } from "react-redux";
-//import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 import Artists from "./Artists";
 
@@ -31,7 +28,7 @@ class Home extends Component {
             success: undefined,
         }
     }
-
+    //spotify login success
     onSuccess = response => {
         console.log(response, response.access_token)
         localStorage["token"] = response.access_token
@@ -45,43 +42,39 @@ class Home extends Component {
     render() {
         return (
             <>
-                {/* {this.state.isLoading === false &&
-                    <Loader
-                        type="Puff"
-                        color="#00BFFF"
-                        height={100}
-                        width={100}
-                    />
-                } */}
+                {/* checking if spotify login fails or, to start the website */}
                 {!this.state.success &&
                     <div className="home">
-                        <div id="divbtnHome">
-                            <button id="btnSpotify" onClick={() => this.props.setLoading()} >
-                                <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
-                                    redirectUri={'http://localhost:3000'}
-                                    onSuccess={this.onSuccess}
-                                    onFailure={this.onFailure}
-                                    id="btnSpotify"
-                                >  Enjoy Music!!!!</SpotifyLogin>
-                            </button>
-
+                        <div id="homeBtnSpotifyCont">
+                            <div id="divbtnHome">
+                                <button id="btnSpotify" onClick={() => this.props.setLoading()} >
+                                    <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
+                                        redirectUri={'http://localhost:3000'}
+                                        onSuccess={this.onSuccess}
+                                        onFailure={this.onFailure}
+                                        id="btnSpotify"
+                                    >  Enjoy Music!!!!</SpotifyLogin>
+                                </button>
+                            </div>{/* end of divbtnHome */}
                             <div id="divLoader">
+                                {/* setting loader by checking loader is true or not */}
                                 {this.props.playLists.loading && (
                                     <Loader
                                         type="Oval"
                                         color="#00BFFF"
-                                        height={100}
-                                        width={100}
+                                        height={70}
+                                        width={70}
                                         timeout={20000}
                                         style={{ margin: "auto" }}
                                     />
                                 )}
-                            </div>
-                        </div>
+                            </div> {/* end of divLoader */}
+                        </div>  {/* end of homeBtnSpotifyCont */}
                     </div>
                 }
 
                 <Router>
+                    {/* if spotify login give successful response then it logs in */}
                     {this.state.success &&
                         <>
                             <Route path="/" exact component={Main} />
@@ -92,7 +85,6 @@ class Home extends Component {
                         </>
                     }
                 </Router>
-                {/* </Provider> */}
             </>
         );
     }

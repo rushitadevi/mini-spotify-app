@@ -1,35 +1,39 @@
-.Container {
+/* main container */
+.container {
   display: flex;
 }
 
+/* 
 .leftColumn {
   flex: 1;
   background-color: black;
   text-align: center;
-}
+} */
 
+/* right container=>display both Image and tracks */
 .mainTracksContent {
   flex: 3;
 }
-
+/* right container=>Image container */
 .mainLeftContent {
   flex: 1;
 }
-
+/* right container=>tracks container */
 .mainRightContent {
   flex: 3;
 }
-
+/* container */
 .insideContainer {
   display: flex;
 }
 
+/* button for tracks */
 .btnTracks {
   margin-bottom: 20px;
   padding-right: 300px;
   height: 50px;
   color: #f3f3f3;
-  background: #1E1E1E;
+  background: #1e1e1e;
   border: 0 solid black;
   border-radius: 10px;
   cursor: pointer;
@@ -38,14 +42,14 @@
   width: 600px;
   font-weight: bold;
 }
-
 .btnTracks:hover {
   color: red;
   font-weight: bold;
-  background-color:#333333
+  background-color: #333333;
 }
 
-.displayName{
+/* display name */
+.displayName {
   color: white;
   font-size: large;
   font-weight: bolder;

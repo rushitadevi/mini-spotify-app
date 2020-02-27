@@ -1,32 +1,18 @@
- import { createStore, combineReducers, compose, applyMiddleware } from "redux";
+import { createStore, combineReducers, compose, applyMiddleware } from "redux";
 import albumReducers from "../Reducers/Album.js";
 import thunk from "redux-thunk";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
-  // albums:{
-  //   playLists: [ { title: "", items: []}],
-  //   tracks:[],
-  // categories:[]
-  // }
-
   playLists: {
-    playListsItems: [], 
+    playListsItems: [],
     tracks: [],
     categories: [],
-    playList:undefined,
-    artists:[],
-    loading:true
+    playList: undefined,
+    artists: [],
+    loading: false
   }
-  // playLists:
-  //   {
-  //     moodPlayList:[],
-  //     popPlayList:[],
-  //     decadesPlayList:[],
-  //     tracks:[],
-  //     categories:[]
-  //   }
 };
 
 const combReducer = combineReducers({

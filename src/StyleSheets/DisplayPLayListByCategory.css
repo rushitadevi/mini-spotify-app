@@ -1,20 +1,26 @@
-.Container{
-    display: flex;
+/* main container */
+.container {
+  display: flex;
 }
 
-.LeftSideBar{
-    flex: 1;
-    background-color: black !important;
+/* left side bar */
+.LeftSideBar {
+  flex: 1;
+  background-color: black !important;
 }
 
-.RightSidBar{
- flex: 3;
+/* right side bar */
+.RightSidBar {
+  flex: 3;
 }
 
-.MainContent{
-
+/* main content */
+.MainContent {
+  display: flex;
 }
 
-.displayDivCategory{
-    flex-wrap: wrap;
+/* div */
+.displayDivCategory {
+  flex-wrap: wrap;
+  display: flex;
 }

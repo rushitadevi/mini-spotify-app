@@ -6,7 +6,7 @@ import btnRepeat from "../PlayerButtons/Repeat.png"
 import btnShuffle from "../PlayerButtons/Shuffle.png"
 import btnPlay from "../PlayerButtons/Play.png"
 import { Link } from "react-router-dom"
-import { fetchTracksByPlayListId, fetchPlayListById } from "../Actions/Album.js"
+import { fetchTracksByPlayListId, fetchPlayListById } from "../Actions/Album.js" //fetching method from actions
 import { connect } from "react-redux";
 
 const mapStateToProps = state => {
@@ -64,15 +64,14 @@ class TracksByPlayList extends React.Component {
     }
 
     render() {
-         return (
+        return (
             <>
-                <div className="Container">
+                <div className="container">
                     <div className="sideBar"><img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
                             <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                            <Link to={"/"}><a className="li">Log Out</a></Link>
                         </ul>
                     </div>
                     <div className="mainTracksContent">
@@ -89,7 +88,7 @@ class TracksByPlayList extends React.Component {
                                         </div>
                                     </>
                                 }
-                            </div>
+                            </div> {/* end of mainLeftContent */}
                             <div className="mainRightContent">
                                 {this.props.playLists.tracks && this.props.playLists.tracks.map((track) => (
                                     <div class="col playlist">
@@ -105,25 +104,26 @@ class TracksByPlayList extends React.Component {
                                         <div>{track.track.artists.name}</div>
                                     </div>
                                 ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </div> {/* end of mainRightContent */}
+                        </div> {/* end of insideContainer */}
+                    </div> {/* end of mainTracksContent */}
+                </div> {/* end of container */}
+                {/* Footer */}
                 <div className="footer">
                     <a href="/">
                         <img src={btnNext} id="btnNext" alt="shuffle" />
                     </a>
                     <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="shuffle" />
+                        <img src={btnPrevious} id="btnPrevious" alt="previous" />
                     </a>
                     {this.state.urlExists ? (
                         <a >
-                            <img src={btnShuffle} id="btnPlay" onClick={() => this.start(this.state.preViewUrl, "btn")} alt="shuffle" />
+                            <img src={btnShuffle} id="btnPlay" onClick={() => this.start(this.state.preViewUrl, "btn")} alt="play" />
                         </a>
                     ) :
                         (
                             <a >
-                                <img src={btnPlay} id="btnPlay" alt="shuffle" />
+                                <img src={btnPlay} id="btnPlay" alt="play" />
                             </a>
                         )
                     }
@@ -131,10 +131,9 @@ class TracksByPlayList extends React.Component {
                         <img src={btnNext} id="btnShuffle" alt="shuffle" />
                     </a>
                     <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="shuffle" />
+                        <img src={btnRepeat} id="btnRepeat" alt="repeat" />
                     </a>
                 </div>
-
             </>
         );
     }

@@ -14,7 +14,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    fetchCategoriesThunk: () => dispatch(fetchCategories())
+    fetchCategoriesThunk: () => dispatch(fetchCategories()) //dispatching action
 });
 
 class Category extends React.Component {
@@ -24,7 +24,7 @@ class Category extends React.Component {
     }
 
     componentDidMount = () => {
-        this.props.fetchCategoriesThunk();
+        this.props.fetchCategoriesThunk(); //fetching categories from API
     }
     render() {
         return (
@@ -32,8 +32,8 @@ class Category extends React.Component {
                 <div className="MainContent" >
                     <div className="sideBar">
                         <ul className="ulList" >
-                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
-                        <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
+                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
                             <Link to={"/"}><a className="li">Log Out</a></Link>
@@ -42,44 +42,43 @@ class Category extends React.Component {
                     <div className="rightSideBar">
                         <div className="mainContent">
                             {this.props.playLists.categories &&
-                                this.props.playLists.categories.map((category,id) => (
+                                this.props.playLists.categories.map((category, id) => (
                                     <div className="displayCards" key={id}>
                                         <ul className="cards">
-                                            <li className="cards__item">
+                                            <li >
                                                 <div className="card">
-                                                    <div className="card__image card__image--fence">
+                                                    <div className="divImg">
                                                         <img src={category.icons["0"].url} alt="img" ></img>
-                                                    </div>
+                                                    </div>{/* end of divImg */}
                                                     <div className="card__content">
-                                                        {/* <Link to={"/tracks/" + playList.id} ><div className="card__title">{playList.name}</div></Link>*/}
                                                         <b><p className="card__text"> {category.name} </p> </b>
-                                                        {/* <button className="btn btn--block card__btn">Button</button> */}
-                                                    </div>
-                                                </div>
-                                            </li>
+                                                    </div> {/* end of card_content */}
+                                                </div> {/* end of card */}
+                                            </li> {/* end of li */}
                                         </ul>
                                     </div>
                                 ))}
-                        </div>
-                    </div>
-                </div>
+                        </div>{/* end of mainContent */}
+                    </div> {/* end of rightSideBar */}
+                </div> {/* end of MainContent */}
+                {/* Footer */}
                 <div className="footer">
                     <a href="/">
-                        <img src={btnNext} id="btnNext" alt="shuffle" />
+                        <img src={btnShuffle} id="btnShuffle" alt="Next" />
                     </a>
                     <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="shuffle" />
+                        <img src={btnPrevious} id="btnPrevious" alt="Previous" />
                     </a>
                     <a href="/">
-                        <img src={btnPlay} id="btnPlay" alt="shuffle" />
+                        <img src={btnPlay} id="btnPlay" alt="Play" />
                     </a>
                     <a href="/">
-                        <img src={btnNext} id="btnShuffle" alt="shuffle" />
+                        <img src={btnNext} id="btnShuffle" alt="Shuffle" />
                     </a>
                     <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="shuffle" />
+                        <img src={btnRepeat} id="btnRepeat" alt="Repeat" />
                     </a>
-                </div>
+                </div> {/* End of footer */}
             </>
         );
     }
