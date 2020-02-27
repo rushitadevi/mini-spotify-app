@@ -6,15 +6,24 @@
 .sideBar {
   flex: 1;
   background-color: black;
+  text-align: center;
 }
 
 .RightSideBar {
   flex: 4;
+  background-color: #1e1e1e;
 }
 
 .mainDisplay {
   display: flex;
   flex-wrap: wrap;
+}
+
+.displayDiv {
+  display: flex;
+  color: black;
+  font-weight: bold;
+  /* font-size: x-large; */
 }
 
 /* List insie side bar */
@@ -25,6 +34,7 @@
 }
 
 .li {
+  color: white;
   margin-top: 15px;
   display: list-item !important;
 }
@@ -87,7 +97,7 @@ img {
 .cards {
   list-style: none;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
 }
 
 .cards__item {
@@ -120,12 +130,14 @@ img {
   background-size: cover;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  filter: contrast(70%);
   overflow: hidden;
   position: relative;
-  transition: filter 0.5s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+ 
 }
-
+.card__title {
+  font-size: larger;
+  font-weight: bolder;
+}
 .card__text {
   flex: 1 1 auto;
   font-size: 0.875rem;

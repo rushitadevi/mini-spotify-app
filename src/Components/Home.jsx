@@ -10,6 +10,7 @@ import SpotifyLogin from 'react-spotify-login';
 import '../StyleSheets/Home.css'
 //import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
+import Artists from "./Artists";
 
 class Home extends Component {
     constructor(props) {
@@ -40,14 +41,16 @@ class Home extends Component {
                         width={100}
                     />
                 } */}
-                {!this.state.success && 
+                {!this.state.success &&
                     <div className="home">
-                        <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
+                        <button id="btnSpotify">
+                            <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
                             redirectUri={'http://localhost:3000'}
                             onSuccess={this.onSuccess}
                             onFailure={this.onFailure}
-                            id="btnSpotify"
-                        >Enjoy Music!!!!  </SpotifyLogin>
+
+                        >  </SpotifyLogin>Enjoy Music!!!!
+                        </button>
                     </div>
                 }
 
@@ -60,6 +63,7 @@ class Home extends Component {
                                 <Route path="/tracks/:id" exact component={TracksByPlayList} />
                                 <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList} />
                                 <Route path="/categories/" exact component={Category} />
+                                <Route path="/search/" exact component={Artists} />
                             </>
                         }
                     </Router>

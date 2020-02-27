@@ -1,26 +1,45 @@
-.Container{
-    display: flex;
+.Container {
+  display: flex;
 }
 
-.leftColumn{
-    flex:1;
-    background-color: black;
-    text-align: center;
-  
+.leftColumn {
+  flex: 1;
+  background-color: black;
+  text-align: center;
 }
 
-.mainTracksContent{
-    flex:3
+.mainTracksContent {
+  flex: 3;
 }
 
-.mainLeftContent{
-    flex:1
+.mainLeftContent {
+  flex: 1;
 }
 
-.mainRightContent{
-    flex:3
+.mainRightContent {
+  flex: 3;
 }
 
-.insideContainer{
-    display: flex
+.insideContainer {
+  display: flex;
+}
+
+.btnTracks {
+  margin-bottom: 20px;
+  padding-right: 300px;
+  height: 50px;
+  color: #f3f3f3;
+  background: #1E1E1E;
+  border: 0 solid black;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 600px;
+  font-weight: bold;
+}
+
+.btnTracks:hover {
+  color: red;
+  font-weight: bold;
+  background-color:#333333
 }

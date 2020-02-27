@@ -1,7 +1,11 @@
-#btnSpotify {
-  color: black !important;
-  font-weight: bolder !important;
-  font-size: x-large;
+a#btnSpotify {
+  color: black!important;
+  font-size: xx-large!important;
+  background: aliceblue!important;
+  border: wheat!important;
+  border-radius: 15px!important;
+  text-align: center!important;
+  height: 70px;
 }
 
 .home {
@@ -9,4 +13,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background: #1E1E1E;
+  padding: 300px;
 }

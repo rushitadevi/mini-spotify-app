@@ -12,9 +12,11 @@ const initialState = {
   // }
 
   playLists: {
-    playListsItems: { title: "", items: [] },
+    playListsItems: [], 
     tracks: [],
-    categories: []
+    categories: [],
+    playList:[],
+    artists:[]
   }
   // playLists:
   //   {

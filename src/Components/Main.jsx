@@ -8,6 +8,7 @@ import btnPlay from "../PlayerButtons/Play.png"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux";
 import { fetchPlayListsByCategory } from "../Actions/Album.js"
+// import Footer from "./Footer.jsx"
 
 const mapStateToProps = state => {
     return state;
@@ -26,81 +27,55 @@ class Main extends Component {
     }
 
     componentDidMount = () => {
-        let categoryArray = ["mood", "pop", "focus"];
-       categoryArray.forEach((categoryId) => {
+        let categoryArray = ["mood", "pop", "focus", "rock"];
+        categoryArray.forEach((categoryId) => {
             this.props.fetchPlayListsByCategoryThunk(categoryId);
-       })
+        })
     }
 
     render() {
-        console.log(this.props.playLists)
            return (
             <>
                 <div className="MainContainer">
                     <div className="sideBar">
                         <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
-                            <Link to={"/main"} ><a className="li" href="/main" >Home</a></Link>
-                            <Link to={"/album"} ><a className="li" href="/album" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li">Categories</a></Link>
-                            <li className="li">New Releases</li>
+                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
+                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
+                            <Link to={"/"}><a className="li">Log Out</a></Link>
                         </ul>
                     </div>
                     <div className="RightSideBar">
                         <div className="mainDisplay">
-                            {/* <div
-                                className="nav-link flex-row  mt-4  "
-                                id="v-pills-tab"
-                                aria-orientation="vertical" >
-                                <a className="nav-item nav-link" href="/">Home</a>
-                                <a className="nav-item nav-link" href="/album">Search</a>
-                            </div> */}
-                            
-                            {/* {this.props.playLists &&
-                                this.props.playLists.map((playList) => (
-                                    <div className="displayCards">
-                                        <ul className="cards">
-                                            <li className="cards__item">
-                                                <div className="card">
-                                                    <div className="card__image card__image--fence">
-                                                        <img src={playList.images[0].url} alt="img" ></img>
+                            { this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x,id) =>
+                                <div className="displayDiv" key={id}><div>{x.title}</div>
+                                    {x.items.map(playList =>
+                                        <div className="displayCards">
+                                            <ul className="cards">
+                                                <li className="cards__item">
+                                                    <div className="card">
+                                                        <div >
+                                                            <img src={playList.images[0].url} alt="img" ></img>
+                                                        </div>
+                                                        <div className="card__content">
+                                                            <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
+                                                            <b><p className="card__text"> {playList.description} </p> </b>
+                                                        </div>
                                                     </div>
-                                                    <div className="card__content">
-                                                        <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
-                                                        <b><p className="card__text"> {playList.description} </p> </b>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )).slice(0, 3)
-                            } */}
-                            <div>
+                                                </li>
+                                            </ul>
+                                        </div>).slice(0, 3)} </div>
+                            ).slice(0, 3)
+                            }
+                            {/* <div>
                                 <Link to={"/displayPlaylist/mood"} >SEE ALL</Link>
-                            </div>
-                            {/* {this.props.playLists.popPlayList &&
-                                this.props.playLists.popPlayList.map((playList) => (
-                                    <div className="displayCards">
-                                        <ul className="cards">
-                                            <li className="cards__item">
-                                                <div className="card">
-                                                    <div className="card__image card__image--fence">
-                                                        <img src={playList.images[0].url} alt="img" ></img>
-                                                    </div>
-                                                    <div className="card__content">
-                                                        <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
-                                                        <b><p className="card__text"> {playList.description} </p> </b>
-                                                     </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                )).slice(0, 3)
-                            } */}
+                            </div> */}
                         </div>
                     </div>
                 </div>
-                <div className="footer">
+                {/* <Footer/> */}
+                <div className="footer" style={{display:"flex"}} >
                     <a href="/">
                         <img src={btnNext} id="btnNext" alt="shuffle" />
                     </a>

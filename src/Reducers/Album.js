@@ -1,27 +1,16 @@
 export default function(state = {}, action) {
-  console.log(action.type,"ty  ")
+  console.log(action.type)
   switch (action.type) {
     case "FETCH_PLAYLISTS":
-      return{
-        ...state,
-        playListsItems:state.playLists.playListsItems.concat(action.payload)
-      }
-    case "FETCH_POP_PLAYLISTS":
       return {
         ...state,
-        //popPlayList: state.popPlayList.concat(action.payload)
-        playLists:state.playLists.concat(action.payload)
+        playListsItems: state.playListsItems.concat(action.payload)
       };
-    case "FETCH_MOOD_PLAYLISTS":
+    case "FETCH_PLAYLIST_DATA":
       return {
         ...state,
-        moodPlayList: state.moodPlayList.concat(action.payload)
-      };
-    case "FETCH_DECADES_PLAYLISTS":
-      return {
-        ...state,
-        decadesPlayList: state.decadesPlayList.concat(action.payload)
-      };
+        playList:action.payload
+      };    
     case "FETCH_TRACKS_BY_PLAYLIST":
       return {
         tracks: action.payload
@@ -31,11 +20,16 @@ export default function(state = {}, action) {
         ...state,
         categories: action.payload
       };
-      case "FETCH_PLAYLIST_DATA" :
+    case "FETCH_PLAYLIST_DATA1":
       return {
-      ...state,
-      moodPlayList:action.payload
-      }
+        ...state,
+        moodPlayList: action.payload
+      };
+      case "FETCH_ARTISTS":
+        return{
+          ...state,
+          artists:action.payload
+        }
     default:
       return state;
   }

@@ -30,19 +30,20 @@ class Category extends React.Component {
         return (
             <>
                 <div className="MainContent" >
-                    <div className="leftSideBar">
+                    <div className="sideBar">
                         <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/album"} ><a className="li" href="/album" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li">Categories</a></Link>
-                            <li className="li">New Releases</li>
+                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
+                        <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
+                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
+                            <Link to={"/"}><a className="li">Log Out</a></Link>
                         </ul>
                     </div>
                     <div className="rightSideBar">
                         <div className="mainContent">
                             {this.props.playLists.categories &&
-                                this.props.playLists.categories.map((category) => (
-                                    <div className="displayCards">
+                                this.props.playLists.categories.map((category,id) => (
+                                    <div className="displayCards" key={id}>
                                         <ul className="cards">
                                             <li className="cards__item">
                                                 <div className="card">

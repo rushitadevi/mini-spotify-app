@@ -2,8 +2,7 @@
 export const fetchPlayListsByCategory = categoryId => {
   return async (dispatch, getState) => {
     try {
-      //categoryId="pop"
-      var res = await fetch(
+          var res = await fetch(
         "https://api.spotify.com/v1/browse/categories/" +
           categoryId+ "/playlists",
         {
@@ -19,22 +18,8 @@ export const fetchPlayListsByCategory = categoryId => {
         var response = await res.json();
         dispatch({
           type:"FETCH_PLAYLISTS",
-          payload:{title: categoryId, items: response.playListsItems.items }
-        })
-        // if (categoryId === "mood") {
-        //   dispatch({
-        //     type: "FETCH_MOOD_PLAYLISTS",
-        //   //  payload: response.playlists.items
-        //    payload: {title: categoryId, items: response.playlists.items }
-        //   });
-        // } else if (categoryId === "pop") {
-        //   console.log("inside")
-        //   dispatch({
-        //     type: "FETCH_POP_PLAYLISTS",
-        //     payload: {title: categoryId, items: response.playlists.items }
-        //     //payload: response.playlists.items
-        //   });
-        // }
+          payload:{title: categoryId, items:response.playlists.items}
+        });        
       }
     } catch (err) {}
   };
@@ -92,6 +77,7 @@ export const fetchCategories = () => {
 //fetch playList from playlist id
 export const fetchPlayListById = id => {
   return async (dispatch, getState) => {
+    console.log(id)
     try {
       var res = await fetch("https://api.spotify.com/v1/playlists/" + id, {
         method: "GET",
@@ -102,10 +88,34 @@ export const fetchPlayListById = id => {
         }
       });
       if (res.ok) {
-        var response = await res.json();
-        dispatch({
+       var response = await res.json();
+       console.log(response,"pla")
+         dispatch({
           type: "FETCH_PLAYLIST_DATA",
-          payload: response.playlists.items
+          payload: response
+        });
+      }
+    } catch (err) {}
+  };
+};
+
+//fetch artist
+export const fetchArtists = () => {
+  return async (dispatch, getState) => {
+    try {
+      var res = await fetch("https://api.spotify.com/v1/search?q=artist&type=artist", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      });
+      if (res.ok) {
+       var response = await res.json();
+         dispatch({
+          type: "FETCH_ARTISTS",
+          payload: response.artists.items
         });
       }
     } catch (err) {}

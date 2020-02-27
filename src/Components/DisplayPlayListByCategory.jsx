@@ -22,23 +22,23 @@ class DisplayPlayList extends React.Component {
     }
 
     render() {
-           return (
+        return (
             <>
                 <div className="Container">
-                    <div className="LeftSideBar">
+                    <div className="sideBar">
                         <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/album"} ><a className="li" href="/album" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li">Categories</a></Link>
-                            <li className="li">New Releases</li>
+                        <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
+                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
+                            <Link to={"/"}><a className="li">Log Out</a></Link>
                         </ul>
                     </div>
                     <div className="RightSidBar">
                         <div className="MainContent">
                             {this.props.playLists.moodPlayList &&
-                                this.props.playLists.moodPlayList.map((playList) => (
-                                    <ul className="cards">
+                                this.props.playLists.moodPlayList.map((playList, id) => (
+                                    <ul className="cards" key={id}>
                                         <li className="cards__item">
                                             <div className="card">
                                                 <div className="card__image card__image--fence">
