@@ -1,5 +1,4 @@
 export default function(state = {}, action) {
-  console.log(action.type)
   switch (action.type) {
     case "FETCH_PLAYLISTS":
       return {
@@ -9,8 +8,8 @@ export default function(state = {}, action) {
     case "FETCH_PLAYLIST_DATA":
       return {
         ...state,
-        playList:action.payload
-      };    
+        playList: action.payload
+      };
     case "FETCH_TRACKS_BY_PLAYLIST":
       return {
         tracks: action.payload
@@ -25,11 +24,16 @@ export default function(state = {}, action) {
         ...state,
         moodPlayList: action.payload
       };
-      case "FETCH_ARTISTS":
-        return{
-          ...state,
-          artists:action.payload
-        }
+    case "FETCH_ARTISTS":
+      return {
+        ...state,
+        artists: action.payload
+      };
+    case "LOADING":
+      return {
+        ...state,
+        loading: !state.loading
+      };
     default:
       return state;
   }

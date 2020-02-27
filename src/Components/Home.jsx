@@ -8,9 +8,21 @@ import configureStore from "../Store/Index.js";
 import Category from "./Category";
 import SpotifyLogin from 'react-spotify-login';
 import '../StyleSheets/Home.css'
+import { connect } from "react-redux";
 //import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 import Artists from "./Artists";
+
+const mapStateToProps = state => {
+    return state;
+};
+
+const mapDispatchToProps = dispatch => ({
+    setLoading: () =>
+        dispatch({
+            type: "LOADING",
+        })
+});
 
 class Home extends Component {
     constructor(props) {
@@ -43,33 +55,46 @@ class Home extends Component {
                 } */}
                 {!this.state.success &&
                     <div className="home">
-                        <button id="btnSpotify">
-                            <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
-                            redirectUri={'http://localhost:3000'}
-                            onSuccess={this.onSuccess}
-                            onFailure={this.onFailure}
+                        <div id="divbtnHome">
+                            <button id="btnSpotify" onClick={() => this.props.setLoading()} >
+                                <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
+                                    redirectUri={'http://localhost:3000'}
+                                    onSuccess={this.onSuccess}
+                                    onFailure={this.onFailure}
+                                    id="btnSpotify"
+                                >  Enjoy Music!!!!</SpotifyLogin>
+                            </button>
 
-                        >  </SpotifyLogin>Enjoy Music!!!!
-                        </button>
+                            <div id="divLoader">
+                                {this.props.playLists.loading && (
+                                    <Loader
+                                        type="Oval"
+                                        color="#00BFFF"
+                                        height={100}
+                                        width={100}
+                                        timeout={20000}
+                                        style={{ margin: "auto" }}
+                                    />
+                                )}
+                            </div>
+                        </div>
                     </div>
                 }
 
-                <Provider store={configureStore()}>
-                    <Router>
-                        {/* <Route path="/" exact component={SignIn} /> */}
-                        {this.state.success &&
-                            <>
-                                <Route path="/" exact component={Main} />
-                                <Route path="/tracks/:id" exact component={TracksByPlayList} />
-                                <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList} />
-                                <Route path="/categories/" exact component={Category} />
-                                <Route path="/search/" exact component={Artists} />
-                            </>
-                        }
-                    </Router>
-                </Provider>
+                <Router>
+                    {this.state.success &&
+                        <>
+                            <Route path="/" exact component={Main} />
+                            <Route path="/tracks/:id" exact component={TracksByPlayList} />
+                            <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList} />
+                            <Route path="/categories/" exact component={Category} />
+                            <Route path="/search/" exact component={Artists} />
+                        </>
+                    }
+                </Router>
+                {/* </Provider> */}
             </>
         );
     }
 }
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

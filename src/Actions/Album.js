@@ -2,9 +2,10 @@
 export const fetchPlayListsByCategory = categoryId => {
   return async (dispatch, getState) => {
     try {
-          var res = await fetch(
+      var res = await fetch(
         "https://api.spotify.com/v1/browse/categories/" +
-          categoryId+ "/playlists",
+          categoryId +
+          "/playlists",
         {
           method: "GET",
           headers: {
@@ -17,9 +18,9 @@ export const fetchPlayListsByCategory = categoryId => {
       if (res.ok) {
         var response = await res.json();
         dispatch({
-          type:"FETCH_PLAYLISTS",
-          payload:{title: categoryId, items:response.playlists.items}
-        });        
+          type: "FETCH_PLAYLISTS",
+          payload: { title: categoryId, items: response.playlists.items }
+        });
       }
     } catch (err) {}
   };
@@ -77,7 +78,7 @@ export const fetchCategories = () => {
 //fetch playList from playlist id
 export const fetchPlayListById = id => {
   return async (dispatch, getState) => {
-    console.log(id)
+    console.log(id);
     try {
       var res = await fetch("https://api.spotify.com/v1/playlists/" + id, {
         method: "GET",
@@ -88,9 +89,9 @@ export const fetchPlayListById = id => {
         }
       });
       if (res.ok) {
-       var response = await res.json();
-       console.log(response,"pla")
-         dispatch({
+        var response = await res.json();
+        console.log(response, "pla");
+        dispatch({
           type: "FETCH_PLAYLIST_DATA",
           payload: response
         });
@@ -103,19 +104,26 @@ export const fetchPlayListById = id => {
 export const fetchArtists = () => {
   return async (dispatch, getState) => {
     try {
-      var res = await fetch("https://api.spotify.com/v1/search?q=artist&type=artist", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token")
+      var res = await fetch(
+        "https://api.spotify.com/v1/search?q=artist&type=artist",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
         }
-      });
+      );
       if (res.ok) {
-       var response = await res.json();
-         dispatch({
+        var response = await res.json();
+        dispatch({
           type: "FETCH_ARTISTS",
           payload: response.artists.items
+        });
+        dispatch({
+          type: "IS_LOADING",
+          payload: "false"
         });
       }
     } catch (err) {}

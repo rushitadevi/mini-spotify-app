@@ -15,8 +15,9 @@ const initialState = {
     playListsItems: [], 
     tracks: [],
     categories: [],
-    playList:[],
-    artists:[]
+    playList:undefined,
+    artists:[],
+    loading:true
   }
   // playLists:
   //   {

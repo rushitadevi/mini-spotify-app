@@ -22,27 +22,35 @@ class TracksByPlayList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            preViewUrl: undefined,
-            urlExists: false
+            preViewUrl: "",
+            urlExists: false,
+            audio: new Audio()
         }
     }
 
-    start = (url) => {
-        // console.log("hii", url)
-        let audio = new Audio();
-        audio.src = url
-
-        this.setState({
-            urlExists: !this.state.urlExists
-        })
-        console.log(audio, "audio")
-        if (this.state.urlExists === true) {
-            console.log("inside")
-            audio.pause();
+    start = (url, source) => {
+        //source is the parameter taken as there is request from two buttons
+        if (source != null) {
+            this.setState({
+                urlExists: !this.state.urlExists,
+                preViewUrl: url //it will assign url to state
+            })
         }
         else {
-            console.log("ot")
-            audio.play();
+            this.setState({
+                urlExists: !this.state.urlExists,
+            })
+        }
+        if (this.state.audio.src === undefined || this.state.audio.src !== url) {
+            this.state.audio.src = url
+            this.state.audio.play()
+        }
+        else if (source === null) {
+            this.state.audio.src = url
+            this.state.audio.play()
+        }
+        else {
+            this.state.audio.pause()
         }
     }
 
@@ -56,14 +64,12 @@ class TracksByPlayList extends React.Component {
     }
 
     render() {
-        console.log("pls", this.props.playLists.playList)
-
-        return (
+         return (
             <>
                 <div className="Container">
                     <div className="sideBar"><img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
-                        <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
                             <Link to={"/"}><a className="li">Log Out</a></Link>
@@ -74,11 +80,15 @@ class TracksByPlayList extends React.Component {
                             <div className="mainLeftContent">
                                 {this.props.playLists.playList &&
                                     <>
-                                        <img id="imgMain" src={this.props.playLists.playList.images[0].url} alt="no" /> */}
-                                        {/* {/* <a>{this.props.playLists.playListsItems.name}</a>   */}
+                                        <img id="imgMain" src={this.props.playLists.playList.images[0].url} alt="no" />
+                                        <div style={{ textAlign: "center", padding: "30px" }}>
+                                            <a className="displayName" >{this.props.playLists.playList.name}</a>
+                                        </div>
+                                        <div>
+                                            <button id="btnPlayList" onClick={() => this.start(this.state.preViewUrl, null)} >Play</button>
+                                        </div>
                                     </>
                                 }
-                                <button id="btnPlayList" >Play</button>
                             </div>
                             <div className="mainRightContent">
                                 {this.props.playLists.tracks && this.props.playLists.tracks.map((track) => (
@@ -86,7 +96,7 @@ class TracksByPlayList extends React.Component {
                                         {track.track.preview_url !== null &&
                                             <>
                                                 <button className="btnTracks"
-                                                    controls onClick={() => this.start(track.track.preview_url)
+                                                    controls onClick={() => this.start(track.track.preview_url, "btn")
                                                     }  >
                                                     {track.track.name}
                                                 </button>
@@ -107,12 +117,12 @@ class TracksByPlayList extends React.Component {
                         <img src={btnPrevious} id="btnPrevious" alt="shuffle" />
                     </a>
                     {this.state.urlExists ? (
-                        <a href="/">
-                            <img src={btnShuffle} id="btnPlay" alt="shuffle" />
+                        <a >
+                            <img src={btnShuffle} id="btnPlay" onClick={() => this.start(this.state.preViewUrl, "btn")} alt="shuffle" />
                         </a>
                     ) :
                         (
-                            <a href="/">
+                            <a >
                                 <img src={btnPlay} id="btnPlay" alt="shuffle" />
                             </a>
                         )

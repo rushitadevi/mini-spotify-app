@@ -14,3 +14,7 @@
 .MainContent{
 
 }
+
+.displayDivCategory{
+    flex-wrap: wrap;
+}

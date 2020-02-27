@@ -145,3 +145,15 @@ img {
   line-height: 1.5;
   margin-bottom: 1.25rem;
 }
+
+.title{
+  font-weight: bold;
+  color:white;
+  padding: 30px;
+}
+
+.seeAll{
+  color: white;
+    flex-shrink: 0;
+    padding: 30px;
+}

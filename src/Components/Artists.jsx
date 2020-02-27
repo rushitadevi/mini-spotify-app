@@ -24,7 +24,8 @@ class Artists extends React.Component {
         super(props);
         this.state = {
             arr: undefined,
-            isLoading: undefined
+            isLoading: false,
+            notFound: undefined
         }
     }
 
@@ -35,22 +36,28 @@ class Artists extends React.Component {
     onChange = (e) => {
         let artistArr = this.props.playLists.artists;
         var newFilteredArray = artistArr.filter(item => (item.name.toLowerCase().includes(e.target.value.toLowerCase())))
+        // this.setState({
+        //     isLoading: true
+        // })
         if (newFilteredArray.length > 0) {
             this.setState({
                 arr: newFilteredArray,
-                isLoading: false
+                // isLoading:false,
+                // notFound:"found"
             })
         }
         else {
             this.setState({
                 arr: undefined,
-                isLoading: true
+                //  isLoading: false,
+                //  notFound:"not found"
             })
         }
     }
 
     render() {
-        console.log(this.state.isLoading, "loading")
+        // console.log(this.state.notFound, "loading")
+
         return (
             <>
                 <div className="MainContainer" >
@@ -66,22 +73,22 @@ class Artists extends React.Component {
                     <div className="Right">
                         <div className="insideContainer">
                             <div className="searchText">
-                                <input type="text" className="inputText" onChange={(e) => this.onChange(e)} />
+                                <input type="text" className="inputText" onChange={(e) => this.onChange(e)}
+                                />
                             </div>
                         </div>
                         <div className="otherContent">
-                            <div className="content" >
+                            {/* <div className="content" > */}
                                 {this.state.isLoading ? <Loader
                                     type="Puff"
                                     color="#00BFFF"
                                     height={100}
                                     width={100}
+                                // timeout={3000}
                                 /> :
-                                    null
-                                }
-                                <div>
+                                <>
                                     {this.state.arr && this.state.arr.length > 0 ?
-                                        <div>
+                                        <>
                                             {this.state.arr.map((artist, id) => (
                                                 <ul className="cards" key={id} >
                                                     <li className="cards__item">
@@ -98,7 +105,7 @@ class Artists extends React.Component {
                                                     </li>
                                                 </ul>
                                             ))}
-                                        </div>
+                                        </>
                                         :
                                         <>
                                             {this.props.playLists.artists && this.props.playLists.artists.map((artist, id) => (
@@ -120,11 +127,9 @@ class Artists extends React.Component {
                                             }
                                         </>
                                     }
-                                </div>
-
-
+                                  </>  
                                 }
-                            </div>
+                            {/* </div> */}
                         </div>
                     </div>
                 </div>

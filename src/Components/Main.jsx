@@ -15,6 +15,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    setLoading: () =>
+        dispatch({
+            type: "LOADING",
+        }),
     fetchPlayListsByCategoryThunk: (categoryId) => dispatch(fetchPlayListsByCategory(categoryId))
 });
 
@@ -26,15 +30,17 @@ class Main extends Component {
         }
     }
 
-    componentDidMount = () => {
-        let categoryArray = ["mood", "pop", "focus", "rock"];
+    componentDidMount = () => {        
+      this.props.setLoading();
+      let categoryArray = ["mood", "pop", "focus", "rock"];
         categoryArray.forEach((categoryId) => {
             this.props.fetchPlayListsByCategoryThunk(categoryId);
         })
     }
 
     render() {
-           return (
+        console.log(this.props.playLists,"reee")
+        return (
             <>
                 <div className="MainContainer">
                     <div className="sideBar">
@@ -43,19 +49,20 @@ class Main extends Component {
                             <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                            <Link to={"/"}><a className="li">Log Out</a></Link>
+                            {/* <Link to={"/"}><a className="li">Log Out</a></Link> */}
                         </ul>
                     </div>
                     <div className="RightSideBar">
                         <div className="mainDisplay">
-                            { this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x,id) =>
-                                <div className="displayDiv" key={id}><div>{x.title}</div>
+                            {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
+                                <div className="displayDiv" key={id}>
+                                    <div className="title" >{x.title}</div>
                                     {x.items.map(playList =>
                                         <div className="displayCards">
                                             <ul className="cards">
                                                 <li className="cards__item">
                                                     <div className="card">
-                                                        <div >
+                                                        <div className="divImg" >
                                                             <img src={playList.images[0].url} alt="img" ></img>
                                                         </div>
                                                         <div className="card__content">
@@ -65,17 +72,22 @@ class Main extends Component {
                                                     </div>
                                                 </li>
                                             </ul>
-                                        </div>).slice(0, 3)} </div>
+                                        </div>).slice(0, 3)
+                                        
+                                        }
+                                    <div>
+                                    <div className="seeAll">
+                                            <Link to={"/displayPlaylist/"+ x.title} >SEE ALL</Link>
+                                        </div>
+                                    </div>
+                                </div>
                             ).slice(0, 3)
                             }
-                            {/* <div>
-                                <Link to={"/displayPlaylist/mood"} >SEE ALL</Link>
-                            </div> */}
                         </div>
                     </div>
                 </div>
                 {/* <Footer/> */}
-                <div className="footer" style={{display:"flex"}} >
+                <div className="footer" style={{ display: "flex" }} >
                     <a href="/">
                         <img src={btnNext} id="btnNext" alt="shuffle" />
                     </a>

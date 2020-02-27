@@ -34,6 +34,7 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
+  font-size: larger;
   width: 600px;
   font-weight: bold;
 }
@@ -42,4 +43,10 @@
   color: red;
   font-weight: bold;
   background-color:#333333
+}
+
+.displayName{
+  color: white;
+  font-size: large;
+  font-weight: bolder;
 }

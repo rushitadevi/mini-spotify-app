@@ -22,13 +22,14 @@ class DisplayPlayList extends React.Component {
     }
 
     render() {
+        
         return (
             <>
                 <div className="Container">
                     <div className="sideBar">
                         <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
-                        <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
+                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
                             <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
                             <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
                             <Link to={"/"}><a className="li">Log Out</a></Link>
@@ -36,8 +37,8 @@ class DisplayPlayList extends React.Component {
                     </div>
                     <div className="RightSidBar">
                         <div className="MainContent">
-                            {this.props.playLists.moodPlayList &&
-                                this.props.playLists.moodPlayList.map((playList, id) => (
+                            {/* {this.props.playLists.playListsItems.items &&
+                                this.props.playLists.playListsItems[0].map((playList, id) => (
                                     <ul className="cards" key={id}>
                                         <li className="cards__item">
                                             <div className="card">
@@ -52,6 +53,30 @@ class DisplayPlayList extends React.Component {
                                             </div>
                                         </li>
                                     </ul>))
+                            } */}
+                            {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
+                                <div className="displayDivCategory" key={id}>
+                                    
+                                    {x.items.map(playList =>
+                                        <div className="displayCards">
+                                            <ul className="cards">
+                                                <li className="cards__item">
+                                                    <div className="card">
+                                                        <div className="divImg" >
+                                                            <img src={playList.images[0].url} alt="img" ></img>
+                                                        </div>
+                                                        <div className="card__content">
+                                                            <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
+                                                            <b><p className="card__text"> {playList.description} </p> </b>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>)}
+                                    <div>
+                                </div>
+                                </div>
+                            )
                             }
                         </div>
                     </div>
