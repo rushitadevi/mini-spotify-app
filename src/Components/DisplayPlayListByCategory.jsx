@@ -1,13 +1,10 @@
 import React from 'react';
-import spotifyLogo from "../logo/Spotify_Logo.png"
 import { connect } from "react-redux";
 import { fetchPlayListsByCategory } from "../Actions/Album.js"
 import { Link } from "react-router-dom"
-import btnNext from "../PlayerButtons/Next.png"
-import btnPrevious from "../PlayerButtons/Previous.png"
-import btnRepeat from "../PlayerButtons/Repeat.png"
-import btnShuffle from "../PlayerButtons/Shuffle.png"
-import btnPlay from "../PlayerButtons/Play.png"
+import  Navbar  from "../Components/Navbar";
+import Footer from "../Components/Footer"
+
 const mapStateToProps = state => {
     return state;
 };
@@ -42,19 +39,11 @@ class DisplayPlayList extends React.Component {
         return (
             <>
                 <div className="container">{/*  container */}
-                    <div className="sideBar"> {/* sideBar */}
-                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
-                        <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                            <Link to={"/"}><a className="li">Log Out</a></Link>
-                        </ul>
-                    </div>
+                    <Navbar/>
                     <div className="RightSidBar">
                         <div className="MainContent">
                             {this.state.filteredArr && this.state.filteredArr.map((x, id) =>
-                                <div className="displayDivCategory" key={id}>
+                                <div key={id} className="displayDivCategory" >
                                     {x.items.map(playList =>
                                         <div className="displayCards">
                                             <ul >
@@ -74,23 +63,7 @@ class DisplayPlayList extends React.Component {
                     </div> {/* enf of RightSideBar */}
                 </div> {/* end of container */}
                 {/* <Footer/> */}
-                <div className="footer">
-                    <a href="/">
-                        <img src={btnShuffle} id="btnNext" alt="shuffle" />
-                    </a>
-                    <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="previous" />
-                    </a>
-                    <a href="/" >
-                        <img src={btnPlay} id="btnPlay" alt="play" />
-                    </a>
-                    <a href="/">
-                        <img src={btnNext} id="btnShuffle" alt="shuffle" />
-                    </a>
-                    <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="repeat" />
-                    </a>
-                </div>
+                <Footer/>
             </>
         );
     }

@@ -2,12 +2,8 @@ import React from 'react';
 import { connect } from "react-redux";
 import { fetchArtists } from "../Actions/Album.js" //fetching from API 
 import { Link } from "react-router-dom"
-import spotifyLogo from "../logo/Spotify_Logo.png"
-import btnNext from "../PlayerButtons/Next.png"
-import btnPrevious from "../PlayerButtons/Previous.png"
-import btnRepeat from "../PlayerButtons/Repeat.png"
-import btnShuffle from "../PlayerButtons/Shuffle.png"
-import btnPlay from "../PlayerButtons/Play.png"
+import  Navbar  from "../Components/Navbar";
+import Footer from "../Components/Footer"
 
 const mapStateToProps = state => {
     return state;
@@ -50,14 +46,7 @@ class Artists extends React.Component {
         return (
             <>
                 <div className="MainContainer" >
-                    <div className="sideBar">
-                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
-                        <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                        </ul>
-                    </div>
+                   <Navbar/>
                     <div className="Right">
                         <div className="insideContainer">
                             <div className="searchText">
@@ -108,23 +97,7 @@ class Artists extends React.Component {
                     </div> {/* End of Right */}
                 </div> {/* End of MainContainer */}
                 {/* Footer */}
-                <div className="footer">
-                    <a href="/">
-                        <img src={btnShuffle} id="btnNext" alt="shuffle" />
-                    </a>
-                    <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="Previous" />
-                    </a>
-                    <a href="/">
-                        <img src={btnPlay} id="btnPlay" alt="Play" />
-                    </a>
-                    <a href="/">
-                        <img src={btnNext} id="btnShuffle" alt="Next" />
-                    </a>
-                    <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="Repeat" />
-                    </a>
-                </div>
+                <Footer />
             </>
         );
     }

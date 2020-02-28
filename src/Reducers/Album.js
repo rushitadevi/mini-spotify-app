@@ -12,6 +12,7 @@ export default function(state = {}, action) {
       };
     case "FETCH_TRACKS_BY_PLAYLIST":
       return {
+        ...state,
         tracks: action.payload
       };
     case "FETCH_CATEGORIES":

@@ -1,13 +1,9 @@
 import React, { Component } from "react"
-import spotifyLogo from "../logo/Spotify_Logo.png"
-import btnNext from "../PlayerButtons/Next.png"
-import btnPrevious from "../PlayerButtons/Previous.png"
-import btnRepeat from "../PlayerButtons/Repeat.png"
-import btnShuffle from "../PlayerButtons/Shuffle.png"
-import btnPlay from "../PlayerButtons/Play.png"
 import { Link } from "react-router-dom"
 import { connect } from "react-redux";
 import { fetchPlayListsByCategory } from "../Actions/Album.js" //fetcing data from API which is written in action
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer"
 
 const mapStateToProps = state => {
     return state;
@@ -40,14 +36,15 @@ class Main extends Component {
             <>
                 {/* main container  */}
                 <div className="MainContainer">
-                    <div className="sideBar">
-                        <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
+                    {/* <div className="sideBar">
+                        {/* <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
                         <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                        </ul>
-                    </div>
+                        <a className="li" href="/main" >Home</a>
+                            <a className="li" href="/search" >Search</a>
+                            <a className="li" href="/categories/">Categories</a>
+                        </ul> */}
+                    <Navbar />
+                    {/* </div> */} */}
                     <div className="RightSideBar">
                         <div className="mainDisplay">
                             {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
@@ -80,23 +77,7 @@ class Main extends Component {
                     </div> {/* end of Right side bar */}
                 </div> {/* end of main container */}
                 {/* <Footer/> */}
-                <div className="footer">
-                    <a href="/">
-                        <img src={btnShuffle} id="btnNext" alt="shuffle" />
-                    </a>
-                    <a href="/">
-                        <img src={btnPrevious} id="btnPrevious" alt="previous" />
-                    </a>
-                    <a href="/" >
-                        <img src={btnPlay} id="btnPlay" alt="play" />
-                    </a>
-                    <a href="/">
-                        <img src={btnNext} id="btnShuffle" alt="Next" />
-                    </a>
-                    <a href="/">
-                        <img src={btnRepeat} id="btnRepeat" alt="repeat" />
-                    </a>
-                </div>
+                <Footer />
             </>
         );
     }

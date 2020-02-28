@@ -76,7 +76,7 @@ class Home extends Component {
                 <Router>
                     {/* if spotify login give successful response then it logs in */}
                     {this.state.success &&
-                        <>
+                        <>                                            
                             <Route path="/" exact component={Main} />
                             <Route path="/tracks/:id" exact component={TracksByPlayList} />
                             <Route path="/displayPlayList/:categoryId" exact component={DisplayPlayList} />

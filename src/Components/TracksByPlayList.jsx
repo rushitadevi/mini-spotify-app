@@ -1,13 +1,12 @@
 import React from "react"
-import spotifyLogo from "../logo/Spotify_Logo.png"
 import btnNext from "../PlayerButtons/Next.png"
 import btnPrevious from "../PlayerButtons/Previous.png"
 import btnRepeat from "../PlayerButtons/Repeat.png"
 import btnShuffle from "../PlayerButtons/Shuffle.png"
 import btnPlay from "../PlayerButtons/Play.png"
-import { Link } from "react-router-dom"
 import { fetchTracksByPlayListId, fetchPlayListById } from "../Actions/Album.js" //fetching method from actions
 import { connect } from "react-redux";
+import  Navbar  from "../Components/Navbar";
 
 const mapStateToProps = state => {
     return state;
@@ -67,13 +66,7 @@ class TracksByPlayList extends React.Component {
         return (
             <>
                 <div className="container">
-                    <div className="sideBar"><img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
-                        <ul className="ulList" >
-                            <Link to={"/"} ><a className="li" href="/" >Home</a></Link>
-                            <Link to={"/search"} ><a className="li" href="/search" >Search</a></Link>
-                            <Link to={"/categories/"}><a className="li" href="/categories/">Categories</a></Link>
-                        </ul>
-                    </div>
+                   <Navbar/>
                     <div className="mainTracksContent">
                         <div className="insideContainer">
                             <div className="mainLeftContent">
