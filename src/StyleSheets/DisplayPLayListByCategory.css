@@ -3,11 +3,6 @@
   display: flex;
 }
 
-/* left side bar */
-.LeftSideBar {
-  flex: 1;
-  background-color: black !important;
-}
 
 /* right side bar */
 .RightSidBar {

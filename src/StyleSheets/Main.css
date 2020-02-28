@@ -1,14 +1,56 @@
+#root{
+  display: flex
+}
+#bodyCont{
+  display: flex;
+  flex-direction: column
+}
+
+#bodyMainCont{
+  flex: 1
+}
+
+#footCont{
+  flex: 1;
+  display: flex;
+  position: sticky;
+  bottom: 0;
+}
+
 /* MainContainer,side Bar */
 .MainContainer {
   display: flex;
 }
 
-/* side bar */
-.sideBar {
+.footer {
+  display: flex;
   flex: 1;
-  background-color: black;
+  background-color: #383838;
+  flex-basis: 100%;
+  height: 100px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
 }
+
+
+/* side bar */
+
+  .sideBar {
+    flex: 1;
+    background-color: black;
+     display: flex;
+     flex-direction: column; 
+  }
+
+  .sideBar img{
+    padding: 40px;
+    padding-bottom: 0px
+  }
+ 
 
 /* right side bar */
 .RightSideBar {
@@ -19,7 +61,7 @@
 /* main display from Right side */
 .mainDisplay {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column
 }
 
 /* div for cards */
@@ -32,31 +74,53 @@
 
 /* cards */
 .displayCards {
-  margin-top: 0px;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  padding: 20px;
+  /* padding-right: 10px */
 }
 
 /* div setting */
 #displayCardsCol {
   flex: 1;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
+  padding-left: 20px
 }
+
+/* for card Image */
+.divImg {
+  width: 300px;
+  height: 300px;
+  overflow: hidden;
+}
+
 
 /* List insie side bar */
 .ulList {
   color: white !important;
   font-weight: bold;
   list-style: none;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 .li {
   color: white;
   margin-top: 15px;
   display: list-item !important;
+  text-decoration: none;
 }
 .li:hover {
   color: yellowgreen;
   border-left: 2px solid yellowgreen;
   cursor: pointer;
+
 }
 
 /* NavBar on Main */
@@ -103,17 +167,39 @@ img {
   height: auto;
   vertical-align: middle;
 }
-.card {
+.mainCard {
   background-color: white;
   border-radius: 0.25rem;
   overflow: hidden;
-}
-.card__content {
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex: 1 1 auto;
+  flex: 1;
   flex-direction: column;
-  padding: 1rem;
+  height: 100%;
+  width: 100%
 }
+
+.mainCard .mainDivImg{
+  display: flex;
+  height: 70%;
+  width: 100%
+}
+
+.mainCard .mainDivImg img{
+  flex: 1;
+  max-width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+#contentCont{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 0px
+}
+
 .card__title {
   font-size: larger;
   font-weight: bolder;
@@ -123,7 +209,6 @@ img {
   font-size: 0.875rem;
   font-weight: bold;
   line-height: 1.5;
-  margin-bottom: 1.25rem;
 }
 
 /* display category title above card */
@@ -144,17 +229,7 @@ img {
 }
 .seeAll {
   text-align: right;
-}
-
-@media screen and (min-width: 1446px) {
-  .cards {
-    /* width: 100%; */
-    /* padding-bottom: 20px;
-    padding-top: 20px; */
-    /* height: 100%;
-    width: 100% */
-    height: 100%;
-  }
+  flex: 1;
 }
 
 @media screen and (max-width:1920){

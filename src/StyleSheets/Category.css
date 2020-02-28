@@ -52,9 +52,6 @@ h1 {
   display: flex;
 }
 
-.rightSideBar {
-  flex: 3;
-}
 
 .leftSideBar {
   flex: 1;
@@ -64,3 +61,5 @@ h1 {
   display: flex;
   flex-wrap: wrap;
 }
+
+

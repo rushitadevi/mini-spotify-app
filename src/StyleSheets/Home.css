@@ -1,39 +1,51 @@
-/* button for spotify login */
+/* container */
+.home {
+  display: flex;
+  background: #1e1e1e;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  flex: 1
+}
+
+#divbtnHome{
+  display: flex;
+  flex: 1;
+  color: black !important;
+  padding-top: 100px;
+  padding-bottom: px;
+  flex-direction: row;
+
+}
+
 #btnSpotify {
   color: black !important;
   font-size: xx-large !important;
   background: aliceblue !important;
   border: wheat !important;
-  border-radius: 15px !important;
-  text-align: center !important;
-  flex-basis: 100%;
+  border-radius: 15px !important;  
+  margin: auto;
+  margin-bottom: 0;
+  flex-basis: 30%;
   height: 100px;
-  flex-direction: row;
-}
-
-/* container */
-.home {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background: #1e1e1e;
-  padding: 300px;
-}
-#homeBtnSpotifyCont {
-  display: flex;
-  flex-direction: column;
-  flex-basis: 40%;
   text-align: center;
-}
-#divbtnHome {
-  display: flex;
-  flex: 1;
-  align-items: center;
   justify-content: center;
-}
+} /* button container for spotify login */
+
+#btnSpotify button {
+  border: none !important;
+  background: aliceblue !important;
+  border-radius: 15px !important;
+  text-align: center  !important;
+  padding: 20px !important;
+  font-weight: bolder !important;
+  font-size: x-large;
+} /* button for spotify login */
+
 
 /* loader */
 #divLoader {
   padding-top: 20px;
+  flex: 1;
+  margin: auto
 }

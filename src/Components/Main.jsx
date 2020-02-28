@@ -35,41 +35,45 @@ class Main extends Component {
         return (
             <>
                 {/* main container  */}
-                <div className="MainContainer">
-                    <Navbar />
-                    <div className="RightSideBar">
-                        <div className="mainDisplay">
-                            {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
-                                <div  key={id} className="displayDiv">
-                                    <div className="title" >{x.title.toUpperCase()}</div>
-                                    <div id="displayCardsCol">
-                                        {x.items.map((playList,id) =>
-                                            <div key={id} className="displayCards"> {/* start of displayCards */}
-                                                <ul >
-                                                    <div  className="card"> {/* card start */}
-                                                        <div className="divImg" >
-                                                            <img src={playList.images[0].url} alt="img" ></img>
-                                                        </div> {/* end of divImg */}
-                                                        <div >
-                                                            <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
-                                                            <b><p className="card__text"> {playList.description} </p> </b>
-                                                        </div>
-                                                    </div> {/* end of card */}
-                                                </ul>
-                                            </div>).slice(0, 3)
-                                        }
-                                    </div> {/* end of displayCardsCol */}
-                                    <div className="seeAll">
-                                        <Link to={"/displayPlaylist/" + x.title} >SEE ALL</Link>
-                                    </div>
-                                </div>
-                            ).slice(0, 3)
-                            }
-                        </div> {/* end of main display */}
-                    </div> {/* end of Right side bar */}
-                </div> {/* end of main container */}
-                {/* <Footer/> */}
-                <Footer />
+                <div id="bodyCont">
+                    <div id="bodyMainCont">
+                        <div className="MainContainer">
+                            <Navbar />
+                            <div className="RightSideBar">
+                                <div className="mainDisplay">
+                                    {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
+                                        <div key={id} className="displayDiv">
+                                            <div className="title" >{x.title.toUpperCase()}</div>
+                                            <div id="displayCardsCol">
+                                                {x.items.map((playList, id) =>
+                                                    <div key={id} className="displayCards"> {/* start of displayCards */}
+                                                        <div className="mainCard"> {/* card start */}
+                                                            <div className="mainDivImg" >
+                                                                <img src={playList.images[0].url} alt="img" ></img>
+                                                            </div> {/* end of mainDivImg */}
+                                                            <div id="contentCont">
+                                                                <Link to={"/tracks/" + playList.id} > <div className="card__title">{playList.name}</div></Link>
+                                                                <b><p className="card__text"> {playList.description} </p> </b>
+                                                            </div>
+                                                        </div> {/* end of maincard */}
+                                                    </div>).slice(0, 3)
+                                                }
+                                            </div> {/* end of displayCardsCol */}
+                                            <div className="seeAll">
+                                                <Link to={"/displayPlaylist/" + x.title} >SEE ALL</Link>
+                                            </div>
+                                        </div>
+                                    ).slice(0, 3)
+                                    }
+                                </div> {/* end of main display */}
+                            </div> {/* end of Right side bar */}
+                        </div> {/* end of main container */}                        
+                    </div> {/* end of bodyMainCont */}                        
+                    {/* <Footer/> */}
+                    <div id="footCont">
+                        <Footer />
+                    </div>
+                </div>{/* end of bodyCont */}                        
             </>
         );
     }

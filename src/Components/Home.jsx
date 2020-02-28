@@ -44,8 +44,9 @@ class Home extends Component {
                 {/* checking if spotify login fails or, to start the website */}
                 {!this.state.success &&
                     <div className="home">
-                        <div id="homeBtnSpotifyCont">
+                        {/* <div id="homeBtnSpotifyCont"> */}
                             <div id="divbtnHome">
+
                                 <div id="btnSpotify" onClick={() => this.props.setLoading()} >
                                     <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
                                         redirectUri={'http://localhost:3000'}
@@ -54,7 +55,8 @@ class Home extends Component {
                                         id="btnSpotify"
                                     >  Enjoy Music!!!!</SpotifyLogin>
                                 </div>
-                            </div>{/* end of divbtnHome */}
+                                </div>
+                            {/* end of divbtnHome */}
                             <div id="divLoader">
                                 {/* setting loader by checking loader is true or not */}
                                 {this.props.playLists.loading && (
@@ -68,7 +70,7 @@ class Home extends Component {
                                     />
                                 )}
                             </div> {/* end of divLoader */}
-                        </div>  {/* end of homeBtnSpotifyCont */}
+                        {/* end of homeBtnSpotifyCont */}
                     </div>
                 }
 

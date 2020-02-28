@@ -48,9 +48,47 @@
   background-color: #333333;
 }
 
+.divTracks {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
 /* display name */
 .displayName {
   color: white;
   font-size: large;
   font-weight: bolder;
+}
+
+.sideBarTracks {
+  height: 100%;
+  flex: 1;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+}
+
+.footerTracks {
+  display: flex;
+  flex: 1;
+  background-color: #383838;
+  flex-basis: 100%;
+  height: 50%;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  padding-bottom: 30px;
+  padding-top: 50px;
+}
+
+.containerTracs {
+  display: flex;
+  flex-direction: column;
+}
+
+.navBarTracks {
+  flex: 1;
 }
