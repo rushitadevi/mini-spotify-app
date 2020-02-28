@@ -36,25 +36,17 @@ class Main extends Component {
             <>
                 {/* main container  */}
                 <div className="MainContainer">
-                    {/* <div className="sideBar">
-                        {/* <img src={spotifyLogo} id="imgLogo" alt="noImg" ></img>
-                        <ul className="ulList" >
-                        <a className="li" href="/main" >Home</a>
-                            <a className="li" href="/search" >Search</a>
-                            <a className="li" href="/categories/">Categories</a>
-                        </ul> */}
                     <Navbar />
-                    {/* </div> */} */}
                     <div className="RightSideBar">
                         <div className="mainDisplay">
                             {this.props.playLists.playListsItems && this.props.playLists.playListsItems.map((x, id) =>
-                                <div className="displayDiv" key={id}>
+                                <div  key={id} className="displayDiv">
                                     <div className="title" >{x.title.toUpperCase()}</div>
                                     <div id="displayCardsCol">
-                                        {x.items.map(playList =>
-                                            <div className="displayCards"> {/* start of displayCards */}
+                                        {x.items.map((playList,id) =>
+                                            <div key={id} className="displayCards"> {/* start of displayCards */}
                                                 <ul >
-                                                    <div className="card"> {/* card start */}
+                                                    <div  className="card"> {/* card start */}
                                                         <div className="divImg" >
                                                             <img src={playList.images[0].url} alt="img" ></img>
                                                         </div> {/* end of divImg */}

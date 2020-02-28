@@ -74,7 +74,7 @@ class TracksByPlayList extends React.Component {
                                     <>
                                         <img id="imgMain" src={this.props.playLists.playList.images[0].url} alt="no" />
                                         <div style={{ textAlign: "center", padding: "30px" }}>
-                                            <a className="displayName" >{this.props.playLists.playList.name}</a>
+                                            <div className="displayName" >{this.props.playLists.playList.name}</div>
                                         </div>
                                         <div>
                                             <button id="btnPlayList" onClick={() => this.start(this.state.preViewUrl, null)} >Play</button>
@@ -83,8 +83,8 @@ class TracksByPlayList extends React.Component {
                                 }
                             </div> {/* end of mainLeftContent */}
                             <div className="mainRightContent">
-                                {this.props.playLists.tracks && this.props.playLists.tracks.map((track) => (
-                                    <div class="col playlist">
+                                {this.props.playLists.tracks && this.props.playLists.tracks.map((track,id) => (
+                                    <div key={id} className="col playlist">
                                         {track.track.preview_url !== null &&
                                             <>
                                                 <button className="btnTracks"
@@ -110,14 +110,14 @@ class TracksByPlayList extends React.Component {
                         <img src={btnPrevious} id="btnPrevious" alt="previous" />
                     </a>
                     {this.state.urlExists ? (
-                        <a >
+                        <div>
                             <img src={btnShuffle} id="btnPlay" onClick={() => this.start(this.state.preViewUrl, "btn")} alt="play" />
-                        </a>
+                        </div>
                     ) :
                         (
-                            <a >
+                            <div >
                                 <img src={btnPlay} id="btnPlay" alt="play" />
-                            </a>
+                            </div>
                         )
                     }
                     <a href="/">

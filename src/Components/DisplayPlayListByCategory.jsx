@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from "react-redux";
 import { fetchPlayListsByCategory } from "../Actions/Album.js"
+import { connect } from "react-redux";
 import { Link } from "react-router-dom"
 import  Navbar  from "../Components/Navbar";
 import Footer from "../Components/Footer"
@@ -44,8 +44,8 @@ class DisplayPlayList extends React.Component {
                         <div className="MainContent">
                             {this.state.filteredArr && this.state.filteredArr.map((x, id) =>
                                 <div key={id} className="displayDivCategory" >
-                                    {x.items.map(playList =>
-                                        <div className="displayCards">
+                                    {x.items.map((playList,id) =>
+                                        <div key={id} className="displayCards">
                                             <ul >
                                                 <div className="card">
                                                     <div className="divImg" >

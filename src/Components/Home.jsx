@@ -30,14 +30,13 @@ class Home extends Component {
     }
     //spotify login success
     onSuccess = response => {
-        console.log(response, response.access_token)
         localStorage["token"] = response.access_token
         this.setState({
             success: true,
         })
     }
 
-    onFailure = response => console.error(response);
+    onFailure = response => response;
 
     render() {
         return (
@@ -47,14 +46,14 @@ class Home extends Component {
                     <div className="home">
                         <div id="homeBtnSpotifyCont">
                             <div id="divbtnHome">
-                                <button id="btnSpotify" onClick={() => this.props.setLoading()} >
+                                <div id="btnSpotify" onClick={() => this.props.setLoading()} >
                                     <SpotifyLogin clientId={process.env.REACT_APP_CLIENT_ID}
                                         redirectUri={'http://localhost:3000'}
                                         onSuccess={this.onSuccess}
                                         onFailure={this.onFailure}
                                         id="btnSpotify"
                                     >  Enjoy Music!!!!</SpotifyLogin>
-                                </button>
+                                </div>
                             </div>{/* end of divbtnHome */}
                             <div id="divLoader">
                                 {/* setting loader by checking loader is true or not */}

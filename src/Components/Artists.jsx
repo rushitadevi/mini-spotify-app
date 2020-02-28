@@ -60,7 +60,7 @@ class Artists extends React.Component {
                                     {this.state.arr.map((artist, id) => (
                                         <ul key={id} >
                                             <li >
-                                                <div className="card">
+                                                <div key={id} className="card">
                                                     <div className="divImg" >
                                                         <img src={artist.images[1].url} alt="img" ></img>
                                                     </div> {/* End of divImg */}
